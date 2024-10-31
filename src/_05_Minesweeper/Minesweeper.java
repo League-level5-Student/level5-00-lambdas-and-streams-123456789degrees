@@ -77,9 +77,11 @@ public class Minesweeper extends PApplet {
      *  noneMatch() // returns true if no items in the stream match the condition
      */
     boolean checkWin() {
-    	cells.stream().filter((cell) -> {if (cell.mine == true && cell.revealed==true) {
-    		return false;
-    	};});
+    	long cnt = cells.stream().filter((cell) -> cell.mine == false && cell.revealed).count();
+    	long cnt2 = cells.stream().filter((cell) -> cell.mine == false).count();
+    	if (cnt == cnt2) {
+    		return true;
+    	}
         return false;
     }
     
